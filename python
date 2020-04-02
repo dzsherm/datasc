@@ -325,3 +325,15 @@ for item in data:
 # New data, hardcoded into our script:
 data = pd.DataFrame(data) # Converting list of dictionaries into dataframe
 data.to_csv('instagram_clean.csv',sep=';',index=False) # Writing dataframe into CSV file
+
+# READING
+ 
+# Import pandas
+import pandas as pd
+ 
+data = pd.read_csv('csvtutorial.csv',sep=';') # Reading data from csv
+data = data.T.to_dict().values() # Converting dataframe into list of dictionaries
+ 
+# Iterate through the imported data
+for item in data:
+	print(item)
