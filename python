@@ -314,6 +314,7 @@ for item in data:
 print(set(urllist)) # We print urllist as a set so we're sure that there are no duplicates, only uniques
 print(urllist.count('www.hln.be')) # We count the amount of times www.hln.be is in the list (this is on the list, not a set version of it)
 
+#make list of dictionaries
 topthree = [] # empty list that will be our list of dictionaries with top three results we want to export in a file
 
 for item in data:
@@ -337,3 +338,17 @@ data = data.T.to_dict().values() # Converting dataframe into list of dictionarie
 # Iterate through the imported data
 for item in data:
 	print(item)
+
+#make new CSV file
+newdata = pd.DataFrame(newdata) # Converting list of dictionaries into dataframe
+newdata.to_csv('newdata.csv',sep=';',index=False) # Writing dataframe into CSV file
+
+
+#replace
+# Iterate through the imported data
+for item in data:
+  item['followers'] = item['followers'].replace('K','000') # Replacing the string value of the key with a numerical equivalent
+  item['followers'] = item['followers'].replace('M','000000') # Replacing the string value of the key with a numerical equivalent
+  item['following'] = item['following'].replace('K','000') # Replacing the string value of the key with a numerical equivalent
+  item['following'] = item['following'].replace('M','000000') # Replacing the string value of the key with a numerical equivalent
+  print(item['followers'],item['following']) # Printing the results before writing
